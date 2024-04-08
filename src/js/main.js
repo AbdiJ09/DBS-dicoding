@@ -90,6 +90,7 @@ highlightButton.addEventListener("click", () => {
 });
 const displayNotes = (notesList) => {
   notesContainer.innerHTML = "";
+
   notesList.forEach((note) => {
     const date = new Date(note.createdAt);
     const formattedDate = date.toLocaleDateString("id-ID", {
@@ -131,5 +132,17 @@ searchInput.addEventListener("input", () => {
     searchText !== ""
       ? NotesData.searchNotes(searchText)
       : NotesData.getNotes();
-  displayNotes(filteredNotes);
+
+  if (searchText !== "" && filteredNotes.length === 0) {
+    notesContainer.innerHTML = ` <div class="notFound">
+        <img src="./src/assets/note.png" alt="" />
+        <h1>Catatan tidak ditemukan</h1>
+      </div>`;
+  }
+  if (searchText === "") {
+    const notFound = document.querySelector(".notFound");
+    notFound.remove();
+
+    displayNotes(filteredNotes);
+  }
 });

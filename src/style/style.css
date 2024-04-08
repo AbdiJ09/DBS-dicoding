@@ -89,6 +89,7 @@ header .search-bar .search-icon {
   display: grid;
   gap: 1rem;
 }
+
 .container .archived-notes {
   border-bottom: 1px solid var(--secondary-color);
   margin-bottom: 1rem;
@@ -104,6 +105,28 @@ header .search-bar .search-icon {
   display: grid;
 }
 .archived-notes .note .note-header span.note-title {
+  font-weight: 400;
+  color: var(--third-color);
+}
+.archived-notes .note .note-body p {
+  font-weight: 300;
+  color: var(--third-color);
+}
+.notFound {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--third-color);
+}
+.notFound img {
+  width: 100px;
+  height: 100px;
+}
+.notFound h1 {
+  font-size: 1.3rem;
   color: var(--third-color);
 }
 
@@ -138,7 +161,7 @@ header .search-bar .search-icon {
 .note .note-header span.note-title {
   margin-top: 1rem;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--secondary-color);
 }
 .note .note-header span.note-archived {
@@ -155,7 +178,7 @@ header .search-bar .search-icon {
   cursor: pointer;
 }
 .note .note-footer {
-  margin-top: 1rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,11 +188,12 @@ header .search-bar .search-icon {
 }
 
 .note .note-body p {
+  font-weight: 300;
   font-size: 0.7rem;
 }
 
 .note .note-footer span {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   position: absolute;
   bottom: 0.3rem;
 }
@@ -315,7 +339,7 @@ header .search-bar .search-icon {
     font-size: 0.9rem;
   }
   .note .note-footer span {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 
   .note .note-body p {
