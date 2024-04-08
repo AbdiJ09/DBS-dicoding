@@ -1,0 +1,324 @@
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  list-style-type: none;
+  text-decoration: none;
+}
+:root {
+  --main-color: #1a120b;
+  --secondary-color: #3c2a21;
+  --third-color: #d5cea3;
+  --text-color: #e5e5cb;
+}
+body {
+  background-color: var(--main-color);
+  color: var(--text-color);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: var(--main-color);
+  padding: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+header .search-bar {
+  width: 100%;
+  position: relative;
+  margin-top: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .search-bar input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--third-color);
+  color: var(--secondary-color);
+  outline: none;
+}
+
+header .search-bar input::placeholder {
+  color: #000;
+}
+
+header .search-bar .search-icon {
+  position: absolute;
+  right: 0.8rem;
+  color: var(--third-color);
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+}
+.search-bar .search-icon i {
+  font-size: 1rem;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  margin-top: 8rem;
+  padding: 2rem 0.6rem;
+}
+
+.container .notes {
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  display: grid;
+  gap: 1rem;
+}
+.container .archived-notes {
+  border-bottom: 1px solid var(--secondary-color);
+  margin-bottom: 1rem;
+}
+.container .archived {
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  display: none;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.archived.active {
+  display: grid;
+}
+.archived-notes .note .note-header span.note-title {
+  color: var(--third-color);
+}
+
+.container .archived-notes .archived .note {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  background-color: var(--main-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--third-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+}
+.container .notes .note {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  background-color: var(--third-color);
+  color: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+}
+.notes .note .note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.note .note-header span.note-title {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+.note .note-header span.note-archived {
+  z-index: 10;
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  background-color: var(--secondary-color);
+  padding: 0.4rem;
+  border-radius: 0 0 0 0.5rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  top: 0;
+  cursor: pointer;
+}
+.note .note-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.note .note-body {
+  margin-top: 0.3rem;
+}
+
+.note .note-body p {
+  font-size: 0.7rem;
+}
+
+.note .note-footer span {
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0.3rem;
+}
+.archived-notes button {
+  margin: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--third-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.highlight-button {
+  position: fixed;
+  bottom: 1rem;
+  z-index: 100;
+  right: 1rem;
+  font-size: 1.7rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 1.4rem;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 50px;
+  transition: all 0.5s ease-in-out;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+}
+.form-container.active {
+  visibility: visible;
+
+  transition: all 0.5s ease-in-out;
+}
+.form-container #form {
+  width: 360px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0) translateY(-100%) perspective(600px) rotateX(45deg);
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--third-color);
+}
+.form-container.active #form.active {
+  transform: scale(1) translateY(0) perspective(600px) rotateX(0deg);
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s ease-in-out;
+}
+
+.form-container #form .form-header {
+  top: -1rem;
+  width: 100%;
+  position: absolute;
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  color: var(--third-color);
+  margin-bottom: 1rem;
+  background-color: var(--secondary-color);
+}
+
+.form-container #form .form-header button {
+  background-color: transparent;
+  border: none;
+  color: var(--third-color);
+  cursor: pointer;
+}
+
+.form-container #form .form-header button.save-button {
+  font-size: 1rem;
+}
+
+.form-container #form .form-header input {
+  width: 100%;
+  color: var(--third-color);
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.form-container #form input::placeholder {
+  color: var(--third-color);
+}
+
+.form-container #form textarea {
+  width: 100%;
+  margin-top: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.form-container #form textarea::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 768px) {
+  header {
+    width: 60%;
+  }
+  .container {
+    width: 60%;
+  }
+  .highlight-button {
+    right: 16rem;
+  }
+  .container .notes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .container .archived {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .note .note-header span.note-title {
+    font-size: 1rem;
+  }
+  .note .note-header span.note-archived {
+    font-size: 0.9rem;
+  }
+  .note .note-footer span {
+    font-size: 0.9rem;
+  }
+
+  .note .note-body p {
+    font-size: 0.8rem;
+  }
+}
